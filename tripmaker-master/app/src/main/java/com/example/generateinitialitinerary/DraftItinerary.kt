@@ -121,7 +121,7 @@ class DraftItinerary : Fragment() {
         while (hours < 10){
             edgeCase = false
 
-            if (hours >= 3 && !lunch){
+            if (hours >= 2 && !lunch){
                 draftItineraryArray.add(findlunchSpot()[0])
                 lunch = true
                 hours++
