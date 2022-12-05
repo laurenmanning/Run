@@ -1,12 +1,23 @@
 package com.example.TripMaker
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultCaller
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.TripMaker.DraftModelClass
+import com.example.TripMaker.R
 import kotlinx.android.synthetic.main.new_destination.view.*
+import kotlin.random.Random
+
 
 class DraftAdapter(context: DraftItinerary, arrayList: ArrayList<DraftModelClass>, arrayList2: ArrayList<DraftModelClass>):
     RecyclerView.Adapter<DraftAdapter.ViewHolder>(){
@@ -53,10 +64,32 @@ class DraftAdapter(context: DraftItinerary, arrayList: ArrayList<DraftModelClass
         return arrayList.size
     }
 
+    fun replaceItem(position: Int) {
+        arrayList[position] = arrayList2[Random.nextInt(0, arrayList2.size)]
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         init {
-            itemView.rowitem.setOnClickListener{
-                setMultipleSelection(adapterPosition)
+            itemView.setOnLongClickListener {
+
+                //Creates a pop up asking to delete the specified item
+                var builder = AlertDialog.Builder(context)
+                builder.setTitle(R.string.confirm_replace)
+                builder.setMessage("Are you sure you want to replace this item?: ${arrayList[this.adapterPosition].name}")
+                builder.setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialog, id ->
+                    //Replaces item from the list
+                    replaceItem(this.adapterPosition)
+                    dialog.cancel()
+                })
+                builder.setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+                })
+
+                var alert = builder.create()
+                alert.show()
+
+                return@setOnLongClickListener true
             }
         }
     }

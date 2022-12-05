@@ -7,8 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.TripMaker.DraftItineraryArgs
+import com.example.TripMaker.DraftModelClass
+import com.example.TripMaker.R
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_draft_itinerary.view.*
+import java.io.File
+import kotlin.random.Random
 
 var places = ArrayList<Results>()
 
@@ -53,7 +58,8 @@ class DraftItinerary : Fragment() {
                     i.types?.let { it1 ->
                         DraftModelClass(i.name, i.vicinity, i.rating,
                             it, false, false, it1,
-                            0)
+                            Random.nextInt(1, 3)
+                        )
                     }
                 }?.let { arrayList.add(it) }
                 spotcheck.add(i.name)
@@ -84,6 +90,15 @@ class DraftItinerary : Fragment() {
         val view = inflater.inflate(R.layout.fragment_draft_itinerary, container, false)
         view.recyclerView.layoutManager = LinearLayoutManager(activity)
         view.recyclerView.adapter = DraftAdapter(this, itinerary, arrayList)
+
+        //CAN ADD FUNCTIONALITY TO THE BUTTONS
+        view.button2.setOnClickListener {
+
+        }
+
+        view.button3.setOnClickListener {
+
+        }
 
         return view
     }
@@ -267,21 +282,26 @@ class DraftItinerary : Fragment() {
 
     fun generateAllPossibleLocations(places: ArrayList<Results>) : ArrayList<Locations> {
         var returnMe = ArrayList<Locations>()
+        var names = mutableListOf<String>()
 
         //Get the results
         var decodePlaces = ArrayList<List<Locations>>()
-        for (i in places.indices)
+        for (i in places.indices) {
             places[i].results?.let { decodePlaces.add(it) }
+        }
 
-        for(i in decodePlaces.indices)
-            for (j in decodePlaces[i].indices){
+        for(i in decodePlaces.indices) {
+            for (j in decodePlaces[i].indices) {
                 var location = Locations()
                 location.name = decodePlaces[i][j].name
                 location.vicinity = decodePlaces[i][j].vicinity
                 location.rating = decodePlaces[i][j].rating
                 location.types = decodePlaces[i][j].types
                 returnMe.add(location)
+                names.add(location.name)
             }
+        }
+
         return returnMe
 
     }

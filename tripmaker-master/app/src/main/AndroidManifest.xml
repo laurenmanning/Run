@@ -76,6 +76,22 @@
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:label="@string/trip_itinerary"
+            android:parentActivityName=".MapsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
