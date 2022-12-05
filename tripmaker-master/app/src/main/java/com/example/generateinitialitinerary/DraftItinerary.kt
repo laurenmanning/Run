@@ -91,13 +91,12 @@ class DraftItinerary : Fragment() {
         view.recyclerView.layoutManager = LinearLayoutManager(activity)
         view.recyclerView.adapter = DraftAdapter(this, itinerary, arrayList)
 
-        //CAN ADD FUNCTIONALITY TO THE BUTTONS
-        view.button2.setOnClickListener {
-
-        }
-
+        //CAN ADD FUNCTIONALITY TO THE BUTTON
         view.button3.setOnClickListener {
 
+            //save itinerary
+
+            activity!!.finish()
         }
 
         return view

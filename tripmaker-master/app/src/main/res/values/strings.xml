@@ -5,6 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm_replace">Confirm Replace</string>
     <string name="confirm_add">Confirm Add</string>
+    <string name="confirm_load">Confirm Load</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="go_to_next_activity_string">Button to add locations</string>
