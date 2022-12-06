@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "505184969377",
+    "firebase_url": "https://groupshouting-default-rtdb.firebaseio.com",
+    "project_id": "groupshouting",
+    "storage_bucket": "groupshouting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505184969377:android:0c98cf4725c41ccf5846e0",
+        "android_client_info": {
+          "package_name": "com.example.TripMaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505184969377-vglle308a8817vvardo05n1t70khc8of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK628_8a6AAX4VqdFZtSOVA0ftKewVM7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505184969377-vglle308a8817vvardo05n1t70khc8of.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "505184969377-4s1setuvekcvakk0974q0acdc4f3bqk2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.groupshouting"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505184969377:android:a3e5b3f314d8cc635846e0",
+        "android_client_info": {
+          "package_name": "com.example.recyclerviewtesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505184969377-vglle308a8817vvardo05n1t70khc8of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK628_8a6AAX4VqdFZtSOVA0ftKewVM7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505184969377-vglle308a8817vvardo05n1t70khc8of.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "505184969377-4s1setuvekcvakk0974q0acdc4f3bqk2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.groupshouting"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505184969377:android:21bd27ca119e305f5846e0",
+        "android_client_info": {
+          "package_name": "com.groupshouting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505184969377-vglle308a8817vvardo05n1t70khc8of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK628_8a6AAX4VqdFZtSOVA0ftKewVM7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505184969377-vglle308a8817vvardo05n1t70khc8of.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "505184969377-4s1setuvekcvakk0974q0acdc4f3bqk2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.groupshouting"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
