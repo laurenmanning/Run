@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IRB Kiosk</title>
+    <link href="scss/custom.css" rel="stylesheet">
+</head>
+
+<body class="vh-100">
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">IRB Kiosk</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="nav nav-pills fs-4 fw-bold">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Map</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inBuildingDirections.html">Directions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="oh.html">Office Hours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="huddleRooms.html">Huddle Rooms</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card z-1 shadow-sm d-inline-flex position-fixed ms-3" style="margin-top: 4.5rem">
+        <div class="card-body p-2">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <h4 class="d-inline-flex mx-0 my-auto">Floor</h4>
+                    <div class="btn-toolbar ms-3">
+                        <div class="btn-group">
+                            <input type="radio" class="btn-check" name="floor" id="floor-g" value="floorG"
+                                onclick="mapView()" checked>
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-g">Ground</label>
+
+                            <input type="radio" class="btn-check" name="floor" id="floor-1" value="floor1"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-1">1</label>
+
+                            <input type="radio" class="btn-check" name="floor" id="floor-2" value="floor2"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-2">2</label>
+
+                            <input type="radio" class="btn-check" name="floor" id="floor-3" value="floor3"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-3">3</label>
+
+                            <input type="radio" class="btn-check" name="floor" id="floor-4" value="floor4"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-4">4</label>
+
+                            <input type="radio" class="btn-check" name="floor" id="floor-5" value="floor5"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-5">5</label>
+
+                            <input type="radio" class="btn-check" name="floor" id="floor-6" value="floor6"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="floor-6">6</label>
+                        </div>
+                        <div class="btn-group ms-2">
+                            <input type="radio" class="btn-check" name="floor" id="campus" value="campus"
+                                onclick="mapView()">
+                            <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="campus">Campus</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr id="separator" class="mt-2 mb-0" hidden>
+            <div id="amenities" class="row mt-2" hidden>
+
+                <div class="col d-flex justify-content-center">
+                    <!-- <h3 class="d-inline-flex" >Amenities</h3> -->
+                    <div class="btn-toolbar fw-bold">
+                        <div class="btn-group">
+                            <input type="radio" class="btn-check" name="amenity" id="amenity-study" value="study" onclick="mapView()">
+                            <label class="btn btn-outline-primary fw-bold" for="amenity-study"> Study</label>
+
+                            <input type="radio" class="btn-check" name="amenity" id="amenity-restroom" value="restroom" onclick="mapView()">
+                            <label class="btn btn-outline-primary fw-bold" for="amenity-restroom">Restroom</label>
+
+                            <input type="radio" class="btn-check" name="amenity" id="amenity-kitchen" value="kitchen" onclick="mapView()">
+                            <label class="btn btn-outline-primary fw-bold" for="amenity-kitchen">Kitchen</label>
+
+                            <input type="radio" class="btn-check" name="amenity" id="amenity-stairs" value="stairs" onclick="mapView()">
+                            <label class="btn btn-outline-primary fw-bold" for="amenity-stairs">Stairs</label>
+
+                            <input type="radio" class="btn-check" name="amenity" id="amenity-elevator" value="elevator" onclick="mapView()">
+                            <label class="btn btn-outline-primary fw-bold" for="amenity-elevator">Elevator</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="z-0 h-100" id="map-container">
+        <div id="interactive-map" class="w-100 h-100">
+            <img id="map-img" src="images/floorG.png">
+        </div>
+    </div>
+
+    <script src="js/panzoom.js"></script>
+    <script>
+        addEventListener("DOMContentLoaded", (event) => {
+            resetPanzoom();
+        });
+        window.addEventListener('resize', function (event) {
+            resetPanzoom();
+        }, true);
+    </script>
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/map.js"></script>
+</body>
+
+</html>

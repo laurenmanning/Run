@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IRB Kiosk</title>
+    <link href="scss/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">IRB Kiosk</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="nav nav-pills fs-4 fw-bold">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="">Directions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="oh.html">Office Hours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="huddleRooms.html">Huddle Rooms</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="container">
+        <div class="card col-10 offset-1 shadow-sm d-inline-flex mt-4">
+            <form class="text-center mt-1 mb-3">
+                <fieldset name="SearchByRoomNumber">
+                    <legend class="text-primary fw-bold">Search By Room Number</legend>
+                    <div class="input-group d-inline-flex px-5">
+                        <div class="form-floating">
+                            <input type="text" class="form-control border-primary" id="roomNumber"
+                                placeholder="Room Number">
+                            <label for="roomNumber" class="fw-semibold">Room Number</label>
+                        </div>
+                        <input type="button" class="btn btn-primary fw-bold fs-5" value="Search" id="searchRoomNumber"
+                            onclick="byRoomNumber()">
+                    </div>
+
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset name="SearchByFacultyName">
+                    <legend class="text-primary fw-bold">Search By Faculty/Staff Name</legend>
+                    <div class="input-group d-inline-flex px-5">
+                        <div class="form-floating">
+                            <input type="input" class="form-control border-primary" id="facultyFirstName"
+                                placeholder="First Name">
+                            <label for="facultyFirstName" class="fw-semibold">First Name</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="input" class="form-control border-primary" id="facultyLastName" size="40"
+                                placeholder="Last Name">
+                            <label for="facultyLastName" class="fw-semibold">Last name</label>
+                        </div>
+                        <input type="button" class="btn btn-primary fw-bold fs-5" value="Search" id="searchRoomNumber"
+                            onclick="byFacultyName()">
+                    </div>
+
+
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset name="SearchByClass">
+                    <legend class="text-primary fw-bold">Search By Class</legend>
+                    <div class="input-group input-group d-inline-flex px-5">
+                        <div class="form-floating">
+                            <input type="input" class="form-control border-primary" id="course" placeholder="Course">
+                            <label for="course" class="fw-semibold">Course</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="input" class="form-control border-primary" id="section" placeholder="Section">
+                            <label for="section" class="fw-semibold">Section</label>
+                        </div>
+                        <input type="button" class="btn btn-primary fw-bold fs-5" value="Search" id="searchRoomNumber"
+                            onclick="byClass()">
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <div id="directionsModal" class="modal fade" tabindex="-1">
+
+        <!-- Modal content -->
+        <div class="modal-dialog modal-xl modal-fullscreen-xl-down">
+            <div class="modal-content">
+                <div class="modal-header d-flex flex-column justify-content-center pb-0">
+                    <h5 id="map-modal-title" class="modal-title fw-bold fs-4 text-center">Directions to 0324</h5>
+                    <p id="map-modal-subtitle" class="fw-semibold fs-5 text-center">Remain on ground floor, Follow path
+                        on map</p>
+                </div>
+                <div class="modal-body d-flex">
+                    <div id="interactive-map" class="mx-auto">
+                        <img id="map-img" class="w-100 h-100" src="images/directionsTo0324.png">
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center text-center">
+                    <input type="button" class="btn btn-primary btn-lg fw-bold" value="Close Map" id="closeMap"
+                        onclick="closeMap()">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="noDirectionsFoundModal" class="modal fade" tabindex="-1">
+
+        <!-- Modal content -->
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 id="map-modal-title" class="modal-title fw-bold fs-3 text-center">No Directions Found</h5>
+                </div>
+                <div class="modal-body d-flex">
+                    <div id="no-directions-search" class="modal-body fw-medium fs-4">
+                        <p>
+                            The information you entered is invalid. Please try a different search.
+                        </p>
+
+                        <p>
+                            Tips for your search: <br>
+                        <ul>
+                            <li>All room numbers are 4 digits, i.e. 0324. The first digit indicates the floor number.
+                            </li>
+                            <li>When searching by Faculty/Staff name, last name is necessary for a complete search. <br>
+                                Including first name will improve your search.</li>
+                            <li>Classes are formatted by the department identifier and the class number, i.e. CMSC434.
+                                Section numbers are 4 digits, i.e. 0101.</li>
+                        </ul>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center text-center">
+                    <input type="button" class="btn btn-primary btn-lg fw-bold" value="Close" id="closeMap"
+                        onclick="closeNoDirections()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/code.js"></script>
+</body>
+
+</html>

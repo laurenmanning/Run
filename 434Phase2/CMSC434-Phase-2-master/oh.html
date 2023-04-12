@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IRB Kiosk</title>
+    <link href="scss/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">IRB Kiosk</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="nav nav-pills fs-4 fw-bold">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inBuildingDirections.html">Directions</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Office Hours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="huddleRooms.html">Huddle Rooms</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex justify-content-center">
+        <div class="card z-1 shadow-sm d-inline-flex ms-3 mt-2">
+            <div class="card-body p-2">
+                <div class="btn-group">
+                    <input type="radio" class="btn-check" name="tab-select" id="schedule" value="schedule"
+                        onchange="ohView()"" checked>
+                    <label class=" btn btn-outline-primary my-auto fs-5 fw-bold" for="schedule">Schedule</label>
+
+                    <input type="radio" class="btn-check" name="tab-select" id="current" value="current"
+                        onchange="ohView()">
+                    <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="current">Current</label>
+
+                    <input type="radio" class="btn-check" name="tab-select" id="search" value="search"
+                        onchange="ohView()">
+                    <label class="btn btn-outline-primary my-auto fs-5 fw-bold" for="search">Search</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="schedule-tab" name="tab">
+        <div class="container">
+            <div class="card col-10 offset-1 shadow d-inline-flex justify-content-center mt-4">
+                <ul class="list-group fs-5 fw-semibold mx-auto mt-3 mb-5" id="oh-schedule"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="current-tab" name="tab" hidden>
+        <div class="container">
+            <div class="card col-10 offset-1 shadow d-inline-flex justify-content-center mt-4">
+                <h2 class="text-center mt-1 mb-3 fw-bold">The current date and time is <br> <span id="time"
+                        class="text-primary"></span></h2>
+                <ul class="list-group fs-5 fw-semibold mx-auto mt-3 mb-5" id="oh-current"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="search-tab" name="tab" hidden>
+        <div class="container">
+            <div class="card col-10 offset-1 shadow d-inline-flex mt-4">
+                <form class="text-center mt-1 mb-3">
+                    <fieldset name="SearchByTA">
+                        <legend class="text-primary fw-bold">Search By TA Name</legend>
+                        <div class="input-group d-inline-flex px-5">
+                            <div class="form-floating">
+                                <input type="text" class="form-control border-primary" id="TAName"
+                                    placeholder="TA Name">
+                                <label for="TAName" class="fw-semibold">TA Name</label>
+                            </div>
+                            <input type="button" class="btn btn-primary fw-bold fs-5" value="Search" id="searchTA"
+                                onclick="byTA()">
+                        </div>
+
+                    </fieldset>
+
+                    <br>
+                    <br>
+
+                    <fieldset name="SearchByCourseName">
+                        <legend class="text-primary fw-bold">Search By Course Name</legend>
+                        <div class="input-group d-inline-flex px-5">
+                            <div class="form-floating">
+                                <input type="input" class="form-control border-primary" id="CourseName"
+                                    placeholder="Course Name">
+                                <label for="CourseName" class="fw-semibold">Course Name</label>
+                            </div>
+                            <input type="button" class="btn btn-primary fw-bold fs-5" value="Search"
+                                id="searchCourseName" onclick="byCourse()">
+                        </div>
+
+
+                    </fieldset>
+
+                    <br>
+                    <br>
+
+                    <fieldset name="SearchByDayTime">
+                        <legend class="text-primary fw-bold">Search By Day and/or Time</legend>
+                        <div class="input-group input-group d-inline-flex px-5">
+                            <div class="form-floating">
+                                <input type="input" class="form-control border-primary" id="day" placeholder="Day">
+                                <label for="day" class="fw-semibold">Day (MTWTHF)</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="input" class="form-control border-primary" id="startTime"
+                                    placeholder="StartTime">
+                                <label for="startTime" class="fw-semibold">Start Time</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="input" class="form-control border-primary" id="endTime"
+                                    placeholder="EndTime">
+                                <label for="endTime" class="fw-semibold">End Time</label>
+                            </div>
+                            <input type="button" class="btn btn-primary fw-bold fs-5" value="Search" id="searchDayTime"
+                                onclick="byDayTime()">
+                        </div>
+                    </fieldset>
+
+                    <br>
+                    <br>
+
+                    <fieldset name="SearchByRoomName">
+                        <legend class="text-primary fw-bold">Search By Room Name</legend>
+                        <div class="input-group d-inline-flex px-5">
+                            <div class="form-floating">
+                                <input type="input" class="form-control border-primary" id="roomNum"
+                                    placeholder="Room Number">
+                                <label for="roomNum" class="fw-semibold">Room Number</label>
+                            </div>
+                            <input type="button" class="btn btn-primary fw-bold fs-5" value="Search" id="searchRoomNum"
+                                onclick="byOHRoom()">
+                        </div>
+
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="OHModal" class="modal fade" tabindex="-1">
+
+            <!-- Modal content -->
+            <div class="modal-dialog modal-xl modal-fullscreen-xl-down">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 id="map-modal-title" class="modal-title fw-bold fs-4 text-center">Office Hours Search Results</h5>
+                    </div>
+                    <div class="modal-body d-flex">
+                        <ul class="list-group mx-auto fs-5 fw-semibold mx-auto mt-3 mb-5" id="oh-details"></ul>
+                    </div>
+                    <div class="modal-footer justify-content-center text-center">
+                        <input type="button" class="btn btn-primary btn-lg fw-bold" value="Close OH" id="closeOH"
+                            onclick="closeModal()">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="noOHFoundModal" class="modal fade" tabindex="-1">
+
+            <!-- Modal content -->
+            <div class="modal-dialog modal-xl modal-fullscreen-xl-down">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 id="map-modal-title" class="modal-title fw-bold fs-3 text-center">No Matching Office Hours
+                            Found</h5>
+                    </div>
+                    <div class="modal-body d-flex">
+                        <div id="no-OH-search" class="modal-body fw-medium fs-4">
+                            <p>
+                                The information you entered is invalid. Please try a different search.
+                            </p>
+
+                            <p>
+                                Tips for your search: <br>
+                            <ul>
+                                <li>All room numbers are 4 digits, i.e. 0324. The first digit indicates the floor
+                                    number.</li>
+                                <li>When searching by TA name, it is by first name only.</li>
+                                <li>Classes are formatted by the department identifier and the class number, i.e.
+                                    CMSC434. Section numbers are 4 digits, i.e. 0101.</li>
+                            </ul>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center text-center">
+                        <input type="button" class="btn btn-primary btn-lg fw-bold" value="Close" id="closeOH"
+                            onclick="closeNoOHModal()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/oh.js"></script>
+    <script>schedule();</script>
+</body>
+
+</html>
