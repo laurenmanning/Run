@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html onload="main()">
+
+    <head>
+        <script src="test.js"></script>
+        
+    </head>
+
+    <input type="text" id="interval">
+    <select name="optionlist" id="pace" required>
+        <option value="" disabled selected >Select a pace</option>
+        <option>base</option>
+        <option>base-push</option>
+        <option>push</option>
+        <option>push-all out</option>
+        <option>all out</option>
+    </select>
+    <input type="button" value="Add" id="add" onclick="addInterval()">
+
+    <p id="displayRun"></p>
+
+
+</html>

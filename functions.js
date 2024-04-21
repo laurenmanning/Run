@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://lemanning3:cmsc3351@cluster0.ttxn2hf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://lemanning3:cmsc3352@cluster0.ttxn2hf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -11,21 +11,20 @@ const client = new MongoClient(uri, {
 
 client.connect();
 
-function x() {
+async function x() {
     document.getElementById("lauren").innerHTML = "here";
     let run = {
         name: "first run",
         paces: ["base", "push", "all-out"],
         times: [30, 15, 10],
         secret: "lee",
+    };
+    try {
+        insertRun(client, databaseAndCollection, run);
+    } catch (e) {
+        document.getElementById("lauren2").innerHTML = e;
     }
-    insertRun(client, databaseAndCollection, run);
-}
 
-async function insertRun(client, databaseAndCollection, newRun) {
-    //client.connect();
-    await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(newRun);
-    //client.close();
 }
 
 
@@ -37,6 +36,13 @@ async function findRun(client, databaseAndCollection, runName) {
                           .findOne(filter);
     //client.close();
     return result;
+}
+
+async function insertRun(client, databaseAndCollection, runName) {
+     document.getElementById("lauren2").innerHTML = "here3";
+    //client.connect();
+    let result = await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(runName);
+    // return result;
 }
 
 function y () {
