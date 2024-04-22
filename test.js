@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://lemanning3:cmsc3351@cluster0.ttxn2hf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://user:pass@cluster0.ttxn2hf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
 const databaseAndCollection = {db: "Run", collection:"SavedRuns"};
@@ -10,6 +10,28 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
   }
+});
+
+const express = require('express');
+const bodyParser = require("body-parser");
+const app = express();
+const path = require("path");
+
+const portNumber = 8080;
+
+app.set('views', 'templates');
+app.set("view engine", "ejs");
+
+app.listen(portNumber, (err) => {
+  if (err) {
+   console.log("Starting server failed.");
+   } else {
+       console.log(`Web server is running at http://localhost:${portNumber} \n`);
+   }
+});
+
+app.get("/", (request, response) => {
+  response.render('first.ejs');
 });
 
 
@@ -135,5 +157,45 @@ function getTotal() {
     pacesArray.push(i.value);
   });
 
-  document.getElementById("indicator").innerHTML = pacesArray;
+  localStorage.setItem("times", timesArray);
+  localStorage.setItem("paces", pacesArray);
+
+  let tableTotalString = tableTotal(timesArray, pacesArray);
+  document.getElementById("runTable").innerHTML = tableTotalString;
+}
+
+function tableTotal(times, paces) {
+  let table = "<table> <table border=\"1\"> <tr> <th> Pace </th> <th> Duration </th> </tr>";
+
+    for (i = 0; i < times.length; i++) {
+        table += "<tr> <td>" + paces[i] + "</td> <td>" + times[i] + "</td> </tr>";
+    }
+
+    table += "</table>";
+    return table;
+}
+
+function createRunModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+}
+
+function submitRun() {
+  getTotal();
+  createRunModal();
+}
+
+function closeRunModal(){
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+
+async function saveRun() {
+  document.getElementById("modalIndicator").innerHTML = "ready to save";
+  let times = localStorage.getItem("times");
+  let paces = localStorage.getItem("paces");
+  let name = document.getElementById("runName").value;
+
+  document.getElementById("modalIndicator").innerHTML = client;
 }

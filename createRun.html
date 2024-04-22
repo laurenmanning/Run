@@ -3,6 +3,7 @@
 <html>
     <head>
         <script src="test.js"></script>    
+        <link rel="stylesheet" href="style.css">
     </head>
 
 
@@ -12,9 +13,34 @@
         </div>
     </form>
     <input type="button" id="addInterval" value="Add Interval" onclick="addIntervalDynamic()">
-    <input type="button" value="Submit" onclick="getTotal()">
+    <input type="button" value="Submit" onclick="submitRun()">
 
     <p id="indicator">Before</p>
 
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Submit</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="runTable"></p>
+        <input type="text" id="runName">
+        <input type="button" value="Back" onclick="closeRunModal()">
+        <input type="button" value="Save" onclick="saveRun()">
+
+        <div id="modalIndicator">before</div>
+    </div>
+
+    </div>
+
+
+    <script>
+        // Get the modal
+      
+    </script>
 
 </html>
